@@ -1,0 +1,346 @@
+openapi: 3.0.0
+info:
+  title: MEN REST API
+  description: MongoDB ExpressJS NodeJS REST API
+  version: 1.0.0
+servers:
+  - url: http://localhost:4000/api/
+    description: Localhost development server 
+  - url: https://smsj-men-restapi.herokuapp.com/api/
+    description: Heroku remote server
+components:
+  securitySchemes:
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: auth-token
+
+  schemas:
+   
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        date:
+          type: string
+
+    Team:
+      type: object
+      properties:
+        name:
+          type: string
+        full_name:
+          type: string
+        location:
+          type: string
+        stadium:
+          type: string
+        wins:
+          type: number
+        losses:
+          type: number
+        logo:
+          type: string
+
+    Player:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        team:
+          type: string
+        position:
+          type: string
+        height_cm:
+          type: number
+
+
+paths:
+
+  /user/register:
+    post:
+      summary: Register a new User
+      description: Register a new User in the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+
+      responses:
+        201:
+          description: User created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  _id:
+                    type: string
+
+  /user/login:
+    post:
+      summary: Login a User
+      description: Login a User in order to get JWT token (auth-token)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      
+      responses:
+        200:
+          description: User logged in succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  data:
+                    type: string
+
+  /teams:
+    get:
+      summary: Retrieves a list of teams
+      description: Retrieves a list of teams as JSON objects.
+      responses:
+        200:
+          description: A list of teams JSON objects in an array.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Team"
+    
+    post:
+      summary: Create a new Team
+      description: Create a new Team
+      security:
+        - ApiKeyAuth: []      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Team"
+
+      responses:
+        201:
+          description: Team created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Team"
+
+  /teams/{id}:
+    get:
+      summary: Specific Team
+      description: Retrieves a specific Team based on it id.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string
+      responses:
+        200:
+          description: A Team in the format of a JSON object.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Team"
+   
+    put:
+      summary: Updates a specific Team
+      description: Updates a specific Team based on it id
+      security:
+        - ApiKeyAuth: []            
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Team"
+
+      responses:
+        201:
+          description: Team updated succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Team"
+
+    delete:
+      summary: Deletes a specific Team
+      description: Deletes a specific Team based on it id
+      security:
+        - ApiKeyAuth: []            
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string      
+
+      responses:
+        201:
+          description: Team deleted succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Team"
+
+  /players:
+    get:
+      summary: Retrieves a list of players
+      description: Retrieves a list of players as JSON objects.
+      responses:
+        200:
+          description: A list of players JSON objects in an array.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Player"
+    
+    post:
+      summary: Create a new Player
+      description: Create a new Player
+      security:
+        - ApiKeyAuth: []      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Player"
+
+      responses:
+        201:
+          description: Player created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+
+  /players/{id}:
+    get:
+      summary: Specific Player
+      description: Retrieves a specific Player based on it id.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string
+      responses:
+        200:
+          description: A Player in the format of a JSON object.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Player"
+   
+    put:
+      summary: Updates a specific Player
+      description: Updates a specific Player based on it id
+      security:
+        - ApiKeyAuth: []            
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Player"
+
+      responses:
+        201:
+          description: Player updated succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+
+    delete:
+      summary: Deletes a specific Player
+      description: Deletes a specific Player based on it id
+      security:
+        - ApiKeyAuth: []            
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string      
+
+      responses:
+        201:
+          description: Player deleted succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+
+  /players/team/{team}:
+    get:
+      summary: Specific team roster
+      description: Retrieves a specific team roster based on it id.
+      parameters:
+        - in: path
+          name: team
+          required: true
+          description: Team name
+          schema:
+            type: string
+      responses:
+        200:
+          description: A Player in the format of a JSON object.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Player"
+        

@@ -1,0 +1,258 @@
+[
+
+    // Cavaliers
+    {
+        "first_name": "Jarret" ,
+        "last_name": "Allen",
+        "team": "Cavaliers",
+        "position": "Center",
+        "height_cm": 210
+    },
+    {
+        "first_name": "Evan" ,
+        "last_name": "Mobley",
+        "team": "Cavaliers",
+        "position": "Power Forward",
+        "height_cm": 213
+    },
+    {
+        "first_name": "Kevin" ,
+        "last_name": "Love",
+        "team": "Cavaliers",
+        "position": "Power Forward",
+        "height_cm": 203
+    },
+    {
+        "first_name": "Darius" ,
+        "last_name": "Garland",
+        "team": "Cavaliers",
+        "position": "Point Guard",
+        "height_cm": 185
+    },
+    {
+        "first_name": "Isaac" ,
+        "last_name": "Okoro",
+        "team": "Cavaliers",
+        "position": "Small Forward",
+        "height_cm": 196
+    },
+
+    // Lakers
+    {
+        "first_name": "LeBron" ,
+        "last_name": "James",
+        "team": "Lakers",
+        "position": "Small Forward",
+        "height_cm": 208
+    },
+    {
+        "first_name": "Anthony" ,
+        "last_name": "Davis",
+        "team": "Lakers",
+        "position": "Power Forward",
+        "height_cm": 210
+    },
+    {
+        "first_name": "Russell" ,
+        "last_name": "Westbrook",
+        "team": "Lakers",
+        "position": "Point Guard",
+        "height_cm": 193
+    },
+    {
+        "first_name": "Malik" ,
+        "last_name": "Monk",
+        "team": "Lakers",
+        "position": "Shooting Guard",
+        "height_cm": 193
+    },
+    {
+        "first_name": "Carmelo" ,
+        "last_name": "Anthony",
+        "team": "Lakers",
+        "position": "Power Forward",
+        "height_cm": 201
+    },
+    // Heat
+    {
+        "first_name": "Jimmy" ,
+        "last_name": "Butler",
+        "team": "Heat",
+        "position": "Small Forward",
+        "height_cm": 201
+    },
+    {
+        "first_name": "Kyle" ,
+        "last_name": "Lowry",
+        "team": "Heat",
+        "position": "Power Forward",
+        "height_cm": 183
+    },
+    {
+        "first_name": "Bam" ,
+        "last_name": "Adebayo",
+        "team": "Heat",
+        "position": "Center",
+        "height_cm": 208
+    },
+    {
+        "first_name": "Tyler" ,
+        "last_name": "Herro",
+        "team": "Heat",
+        "position": "Shooting Guard",
+        "height_cm": 196
+    },
+    {
+        "first_name": "Duncan" ,
+        "last_name": "Robinson",
+        "team": "Heat",
+        "position": "Shooting Guard",
+        "height_cm": 201
+    },
+
+    //Bucks
+    {
+        "first_name": "Giannis" ,
+        "last_name": "Antetokounmpo",
+        "team": "Bucks",
+        "position": "Power Forward",
+        "height_cm": 210
+    },
+    {
+        "first_name": "Jrue" ,
+        "last_name": "Holiday",
+        "team": "Bucks",
+        "position": "Point Guard",
+        "height_cm": 192
+    },
+    {
+        "first_name": "Khris" ,
+        "last_name": "Middleton",
+        "team": "Bucks",
+        "position": "Small Forward",
+        "height_cm": 201
+    },
+    {
+        "first_name": "Brook" ,
+        "last_name": "Lopez",
+        "team": "Bucks",
+        "position": "Center",
+        "height_cm": 213
+    },
+    {
+        "first_name": "Bobby" ,
+        "last_name": "Portis",
+        "team": "Bucks",
+        "position": "Center",
+        "height_cm": 201
+    },
+    //Sixers
+    {
+        "first_name": "Tobias" ,
+        "last_name": "Harris",
+        "team": "Sixers",
+        "position": "Power Forward",
+        "height_cm": 203
+    },
+    {
+        "first_name": "Tyrese" ,
+        "last_name": "Maxey",
+        "team": "Sixers",
+        "position": "Point Guard",
+        "height_cm": 190
+    },
+    {
+        "first_name": "James" ,
+        "last_name": "Harden",
+        "team": "Sixers",
+        "position": "Shooting Guard",
+        "height_cm": 196
+    },
+    {
+        "first_name": "Joel" ,
+        "last_name": "Embiid",
+        "team": "Sixers",
+        "position": "Center",
+        "height_cm": 213
+    },
+    {
+        "first_name": "Matisse" ,
+        "last_name": "Thybulle",
+        "team": "Sixers",
+        "position": "Shooting Guard",
+        "height_cm": 196
+    },
+    //Suns
+    {
+        "first_name": "Chris" ,
+        "last_name": "Paul",
+        "team": "Suns",
+        "position": "Point Guard",
+        "height_cm": 180
+    },
+    {
+        "first_name": "Devin" ,
+        "last_name": "Booker",
+        "team": "Suns",
+        "position": "Shooting Guard",
+        "height_cm": 196
+    },
+    {
+        "first_name": "Mikael" ,
+        "last_name": "Bridges",
+        "team": "Suns",
+        "position": "Small Forward",
+        "height_cm": 198
+    },
+    {
+        "first_name": "Deandre" ,
+        "last_name": "Ayton",
+        "team": "Suns",
+        "position": "Center",
+        "height_cm": 210
+    },
+    {
+        "first_name": "Cameron" ,
+        "last_name": "Johnson",
+        "team": "Suns",
+        "position": "Power Forward",
+        "height_cm": 203
+    },
+    //Grizzlies
+    {
+        "first_name": "Ja" ,
+        "last_name": "Morant",
+        "team": "Grizzlies",
+        "position": "Point Guard",
+        "height_cm": 193
+    },
+    {
+        "first_name": "Desmond" ,
+        "last_name": "Bane",
+        "team": "Grizzlies",
+        "position": "Small Forward",
+        "height_cm": 196
+    },
+    {
+        "first_name": "Dillon" ,
+        "last_name": "Brooks",
+        "team": "Grizzlies",
+        "position": "Small Forward",
+        "height_cm": 201
+    },
+    {
+        "first_name": "Steven" ,
+        "last_name": "Adams",
+        "team": "Grizzlies",
+        "position": "Center",
+        "height_cm": 210
+    },
+    {
+        "first_name": "Jaren" ,
+        "last_name": "Jackson Jr",
+        "team": "Grizzlies",
+        "position": "Power Forward",
+        "height_cm": 210
+    }
+    
+]

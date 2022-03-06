@@ -1,0 +1,67 @@
+[
+    {
+    "name": "Lakers" ,
+    "full_name": "Los Angeles Lakers",
+    "location": "Los Angeles",
+    "stadium": "Crypto.com Arena",
+    "wins": 28,
+    "loses": 35,
+    "logo": "https://content.sportslogos.net/logos/6/237/full/uig7aiht8jnpl1szbi57zzlsh.png"
+    },
+    {
+    "name": "Sixers" ,
+    "full_name": "Philadelphia 76ers",
+    "location": "Philadelphia",
+    "stadium": "Wells Fargo Center",
+    "wins": 39,
+    "loses": 24,
+    "logo": "https://content.sportslogos.net/logos/6/218/full/7034_philadelphia_76ers-primary-2016.png"
+    },
+    {
+    "name": "Heat" ,
+    "full_name": "Miami Heat",
+    "location": "Miami",
+    "stadium": "FTX Arena",
+    "wins": 43,
+    "loses": 22,
+    "logo": "https://content.sportslogos.net/logos/6/214/full/burm5gh2wvjti3xhei5h16k8e.gif"
+    },
+    {
+    "name": "Suns" ,
+    "full_name": "Phoenix Suns",
+    "location": "Phoenix",
+    "stadium": "Footprint Center",
+    "wins": 51,
+    "loses": 12,
+    "logo": "https://content.sportslogos.net/logos/6/238/full/phoenix_suns_logo_primary_20143696.png"
+    },
+    {
+    "name": "Grizzlies" ,
+    "full_name": "Memphis Grizzlies",
+    "location": "Memphis",
+    "stadium": "FedExForum",
+    "wins": 44,
+    "loses": 21,
+    "logo": "https://content.sportslogos.net/logos/6/231/full/4373_memphis_grizzlies-primary-2019.png"
+    },
+    {
+    "name": "Bucks" ,
+    "full_name": "Milwaukee Bucks",
+    "location": "Milwaukee",
+    "stadium": "Fiserv Forum",
+    "wins": 39,
+    "loses": 25,
+    "logo": "https://content.sportslogos.net/logos/6/225/full/milwaukee_bucks_logo_primary_20165763.png"
+    },
+    {
+    "name": "Cavaliers" ,
+    "full_name": "Cleveland Cavaliers",
+    "location": "Cleveland",
+    "stadium": "Rocket Mortgage FieldHouse",
+    "wins": 36,
+    "loses": 27,
+    "logo": "https://content.sportslogos.net/logos/6/222/full/cleveland_cavaliers_logo_primary_20187997.png"
+
+    }
+]
+
