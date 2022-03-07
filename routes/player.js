@@ -18,14 +18,23 @@ router.get("/", (req, res) => {
     player.find()
     .then(data => { res.send(data); })
     .catch(err => { res.status(500).send({message: err.message})})
-
 });
 
 //Read specific player -- get
 
 router.get("/team/:team", (req, res) => {
+    const team_name = req.params.team;
     player.find({team: req.params.team})
-    .then(data => { res.send(data); })
+    .then(data => { 
+        if(data.length==0)
+        {
+            res.status(404).send({message: "Cannot find team with name " + team_name + ". Team was not found"})
+        }
+        else
+        {
+            res.send(data); 
+        }
+    })
     .catch(err => { res.status(500).send({message: err.message})})
 });
 

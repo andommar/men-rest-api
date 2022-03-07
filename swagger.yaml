@@ -8,6 +8,11 @@ servers:
     description: Localhost development server 
   - url: https://smsj-men-restapi.herokuapp.com/api/
     description: Heroku remote server
+tags:
+- name: "User"
+- name: "Team"
+- name: "Player"
+
 components:
   securitySchemes:
     ApiKeyAuth:        # arbitrary name for the security scheme
@@ -66,6 +71,8 @@ paths:
 
   /user/register:
     post:
+      tags:
+      - "User"
       summary: Register a new User
       description: Register a new User in the database
       requestBody:
@@ -90,6 +97,8 @@ paths:
 
   /user/login:
     post:
+      tags:
+      - "User"
       summary: Login a User
       description: Login a User in order to get JWT token (auth-token)
       requestBody:
@@ -119,6 +128,8 @@ paths:
 
   /teams:
     get:
+      tags:
+      - "Team"
       summary: Retrieves a list of teams
       description: Retrieves a list of teams as JSON objects.
       responses:
@@ -132,6 +143,8 @@ paths:
                   $ref: "#/components/schemas/Team"
     
     post:
+      tags:
+      - "Team"
       summary: Create a new Team
       description: Create a new Team
       security:
@@ -153,6 +166,8 @@ paths:
 
   /teams/{id}:
     get:
+      tags:
+      - "Team"
       summary: Specific Team
       description: Retrieves a specific Team based on it id.
       parameters:
@@ -171,8 +186,19 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Team"
+        404:
+          description: 404 error message player id was not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+        
    
     put:
+      tags:
+      - "Team"
       summary: Updates a specific Team
       description: Updates a specific Team based on it id
       security:
@@ -198,8 +224,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Team"
+        404:
+          description: Team id succesfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
 
     delete:
+      tags:
+      - "Team"
       summary: Deletes a specific Team
       description: Deletes a specific Team based on it id
       security:
@@ -219,9 +255,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Team"
+        404:
+          description: 404 error message team id was not found.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
 
   /players:
     get:
+      tags:
+      - "Player"
       summary: Retrieves a list of players
       description: Retrieves a list of players as JSON objects.
       responses:
@@ -235,6 +281,8 @@ paths:
                   $ref: "#/components/schemas/Player"
     
     post:
+      tags:
+      - "Player"
       summary: Create a new Player
       description: Create a new Player
       security:
@@ -256,6 +304,8 @@ paths:
 
   /players/{id}:
     get:
+      tags:
+      - "Player"
       summary: Specific Player
       description: Retrieves a specific Player based on it id.
       parameters:
@@ -274,8 +324,18 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Player"
+        404:
+          description: 404 error message player id was not found.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
    
     put:
+      tags:
+      - "Player"
       summary: Updates a specific Player
       description: Updates a specific Player based on it id
       security:
@@ -301,8 +361,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Player"
+        404:
+          description: 404 error message player id was not found.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
 
     delete:
+      tags:
+      - "Player"
       summary: Deletes a specific Player
       description: Deletes a specific Player based on it id
       security:
@@ -322,9 +392,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Player"
+        404:
+          description: 404 error message player id was not found.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
 
   /players/team/{team}:
     get:
+      tags:
+      - "Player"
       summary: Specific team roster
       description: Retrieves a specific team roster based on it id.
       parameters:
@@ -343,4 +423,12 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Player"
+        404:
+          description: 404 error message team name was not found.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
         
