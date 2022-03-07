@@ -406,7 +406,7 @@ paths:
       tags:
       - "Player"
       summary: Specific team roster
-      description: Retrieves a specific team roster based on it id.
+      description: Retrieves a specific team roster based on it id. Team names e.g. Suns, Heat, Lakers, Grizzlies
       parameters:
         - in: path
           name: team
