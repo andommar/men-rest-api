@@ -9,14 +9,14 @@ const {registerValidation, loginValidation} = require('../validation');
 
 //registration
 router.post("/register", async (req, res) => {
-    
+
     //validate user input (name, email, password)
     const {error} = registerValidation(req.body);
 
     if(error){
         return res.status(400).json({error: error.details[0].message})
     }
-    
+
     //check if email is registered
     const emailExist = await User.findOne({email: req.body.email});
 
@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const password = await bcrypt.hash(req.body.password, salt);
 
-    //const salt = await 
+    //const salt = await
     const userObject = new User({
         name: req.body.name,
         email: req.body.email,
@@ -43,7 +43,7 @@ router.post("/register", async (req, res) => {
     }
 
     //create a user object and save in DB
-    
+
 })
 
 //login
@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
     if(error){
         return res.status(400).json({error: error.details[0].message})
     }
-    
+
     //check if email is registered
     const user = await User.findOne({email: req.body.email});
 
