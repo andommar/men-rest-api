@@ -21,6 +21,12 @@ require ("dotenv-flow").config();
 //parse request of content type JSON
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE"); //If using .fetch not axios
+    res.header("Access-Control-Allow-Headers", "auth-token, Origin, X-Requested-Width, Content-Type, Accept");
+    next();
+})
 
 mongoose.connect
 (

@@ -9,185 +9,94 @@ chai.use(chaiHttp);
 
 describe('User workflow tests', () => {
 
-    it('should register + login a user, create team and verify 1 in DB', (done) => {
+        // ========= User register and login validations =========
 
-        // 1) Register new user
-        let user = {
-            name: "pepe1678",
-            email: "pepe1@gmail.com",
-            password: "1234567"
-        }
-        chai.request(server)
-            .post('/api/user/register')
-            .send(user)
-            .end((err, res) => {
-                
-                // Asserts
-                expect(res.status).to.be.equal(200);   
-                expect(res.body).to.be.a('object');
-                expect(res.body.error).to.be.equal(null);
-               
-                // 2) Login the user
-                chai.request(server)
-                    .post('/api/user/login')
-                    .send({
-                        email: "pepe1@gmail.com",
-                        password: "1234567"
-                    })
-                    .end((err, res) => {
-                        // Asserts                        
-                        expect(res.status).to.be.equal(200);
-                        expect(res.body.error).to.be.equal(null);                        
-                        let token = res.body.data.token;
+        it('Should register a new user', (done) =>{
+            let user = {
+                name: "New user",
+                email: "newuserregister@gmail.com",
+                password: "hellothere!"
+            }
+            chai.request(server)
+                .post('/api/user/register')
+                .send(user)
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(200);
+                    expect(res.body).to.be.a('object');
+                    expect(res.body.error).to.be.equal(null);
+                    done();
 
-                        // 3) Create new team
-                        let team =
-                        {
-                            name: "Cavaliers" ,
-                            full_name: "Cleveland Cavaliers",
-                            location: "Cleveland",
-                            stadium: "Rocket Mortgage FieldHouse",
-                            wins: 36,
-                            loses: 27,
-                            logo: "https://content.sportslogos.net/logos/6/222/full/cleveland_cavaliers_logo_primary_20187997.png"
-                        };
+                })
+        });
 
-                        chai.request(server)
-                            .post('/api/teams')
-                            .set({ "auth-token": token })
-                            .send(team)
-                            .end((err, res) => {
-                                
-                                // Asserts
-                                expect(res.status).to.be.equal(201);                                
-                                expect(res.body).to.be.a('array');
-                                expect(res.body.length).to.be.eql(1);
-                                
-                                let savedteam = res.body[0];
-                                expect(savedteam.name).to.be.equal(team.name);
-                                expect(savedteam.description).to.be.equal(team.description);
-                                expect(savedteam.price).to.be.equal(team.price);
-                                expect(savedteam.inStock).to.be.equal(team.inStock);
+        it('Should not register a new user. Email already in use', (done) =>{
+            let user = {
+                name: "New user",
+                email: "newuserregister@gmail.com",
+                password: "hellothere!"
+            }
+            chai.request(server)
+                .post('/api/user/register')
+                .send(user)
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(400);
+                    expect(res.body).to.be.a('object');
+                    expect(res.body.error).to.be.equal('Email already exists');
+                    done();
 
+                })
+        });
 
-                                // 4) Verify one team in test DB
-                                chai.request(server)
-                                    .get('/api/teams')
-                                    .end((err, res) => {
-                                        
-                                        // Asserts
-                                        expect(res.status).to.be.equal(200);                                
-                                        expect(res.body).to.be.a('array');                                
-                                        expect(res.body.length).to.be.eql(1);
-                                
-                                        done();
-                                    });
-                            });
-                    });
-            });
-    });
+        it('Should login a user that already exists', (done) =>{
+            let user = {
+                email: "newuserregister@gmail.com",
+                password: "hellothere!"
+            }
+            chai.request(server)
+                .post('/api/user/login')
+                .send(user)
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(200);
+                    expect(res.body).to.be.a('object');
+                    expect(res.body.error).to.be.equal(null);
+                    done();
 
-    it('should register + login a user, create team and delete it from DB', (done) => {
+                })
+        });
 
-        // 1) Register new user
-        let user = {
-            name: "newuser",
-            email: "newuser@gmail.com",
-            password: "1234567"
-        }
-        chai.request(server)
-            .post('/api/user/register')
-            .send(user)
-            .end((err, res) => {
-                
-                // Asserts
-                expect(res.status).to.be.equal(200);   
-                expect(res.body).to.be.a('object');
-                expect(res.body.error).to.be.equal(null);
-                
-                // 2) Login the user
-                chai.request(server)
-                    .post('/api/user/login')
-                    .send({
-                        "email": "newuser@gmail.com",
-                        "password": "1234567"
-                    })
-                    .end((err, res) => {
-                        // Asserts                        
-                        expect(res.status).to.be.equal(200);                         
-                        expect(res.body.error).to.be.equal(null);                        
-                        let token = res.body.data.token;
+        it('Should not login with an invalid password', (done) =>{
+            let user = {
+                email: "newuserregister@gmail.com",
+                password: "vutigaibas$!"
+            }
+            chai.request(server)
+                .post('/api/user/login')
+                .send(user)
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(400);
+                    expect(res.body).to.be.a('object');
+                    expect(res.body.error).to.be.equal('Password is wrong');
+                    done();
 
-                        // 3) Create new team
-                        let team =
-                        {
-                            name: "Cavaliers" ,
-                            full_name: "Cleveland Cavaliers",
-                            location: "Cleveland",
-                            stadium: "Rocket Mortgage FieldHouse",
-                            wins: 36,
-                            loses: 27,
-                            logo: "https://content.sportslogos.net/logos/6/222/full/cleveland_cavaliers_logo_primary_20187997.png"
-                        };
+                })
+        });
 
-                        chai.request(server)
-                            .post('/api/teams')
-                            .set({ "auth-token": token })
-                            .send(team)
-                            .end((err, res) => {
-                                
-                                // Asserts
-                                expect(res.status).to.be.equal(201);                                
-                                expect(res.body).to.be.a('array');
-                                expect(res.body.length).to.be.eql(1);
-                                
-                                let savedteam = res.body[0];
-                                expect(savedteam.name).to.be.equal(team.name);
-                                expect(savedteam.full_name).to.be.equal(team.full_name);
-                                expect(savedteam.location).to.be.equal(team.location);
-                                expect(savedteam.stadium).to.be.equal(team.stadium);
-                                expect(savedteam.wins).to.be.equal(team.wins);
-                                expect(savedteam.loses).to.be.equal(team.loses);
-                                expect(savedteam.logo).to.be.equal(team.logo);
+        it('Should not login with an invalid email', (done) =>{
+            let user = {
+                email: "adda@gmail.com",
+                password: "hellothere!"
+            }
+            chai.request(server)
+                .post('/api/user/login')
+                .send(user)
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(400);
+                    expect(res.body).to.be.a('object');
+                    expect(res.body.error).to.be.equal('Email is wrong');
+                    done();
+
+                })
+        });
 
 
-                                // 4) Delete team
-                                chai.request(server)
-                                    .delete('/api/teams/' + savedteam._id)
-                                    .set({ "auth-token": token })
-                                    .end((err, res) => {
-                                        
-                                        // Asserts
-                                        expect(res.status).to.be.equal(200);                                        
-                                        const actualVal = res.body.message;
-                                        expect(actualVal).to.be.equal('Team was succesfully deleted');        
-                                        done();
-                                    });
-                            });
-                    });
-            });
-    });
-
-    it('should register user with invalid input', (done) => {
-
-        // 1) Register new user with invalid inputs
-        let user = {
-            name: "user1",
-            email: "user1@gmail.com",
-            password: "123" //Faulty password - Joi/validation should catch this...
-        }
-        chai.request(server)
-            .post('/api/user/register')
-            .send(user)
-            .end((err, res) => {
-                                
-                // Asserts
-                expect(res.status).to.be.equal(400); //normal expect with no custom output message
-                //expect(res.status,"Status is not 400 (NOT FOUND)").to.be.equal(400); //custom output message at fail
-                
-                expect(res.body).to.be.a('object');
-                expect(res.body.error).to.be.equal("\"password\" length must be at least 6 characters long");  
-                done();              
-            });
-    });
 });
