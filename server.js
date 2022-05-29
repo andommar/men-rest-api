@@ -14,6 +14,7 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
 const teamRoutes = require("./routes/team");
 const playerRoutes = require("./routes/player");
 const authRoutes = require("./routes/auth");
+const newsRoutes = require("./routes/news");
 
 
 require ("dotenv-flow").config();
@@ -50,6 +51,7 @@ app.get("/api/welcome", (req, res) => {
 app.use("/api/teams", teamRoutes);
 app.use("/api/players", playerRoutes);
 app.use("/api/user", authRoutes);
+app.use("/api/news", newsRoutes);
 
 
 // /api/user/register
