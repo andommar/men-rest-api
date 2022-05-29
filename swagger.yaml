@@ -12,6 +12,7 @@ tags:
 - name: "User"
 - name: "Team"
 - name: "Player"
+  name: "News"
 
 components:
   securitySchemes:
@@ -32,6 +33,16 @@ components:
         password:
           type: string
         date:
+          type: string
+
+    News:
+      type: object
+      properties:
+        title:
+          type: string
+        url:
+          type: string
+        image:
           type: string
 
     Team:
@@ -431,4 +442,21 @@ paths:
                 properties:
                   error:
                     type: string
-        
+
+
+
+  /news:
+    get:
+      tags:
+      - "News"
+      summary: Retrieves a list of sports news
+      description: Retrieves a list of news as JSON objects.
+      responses:
+        200:
+          description: A list of news JSON objects in an array.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/News"
