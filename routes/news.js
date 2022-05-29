@@ -23,7 +23,6 @@ axios(urlBR)
                 url,
                 image
             })
-            console.log(articles)
         })
     }).catch(err=>console.log(err))
 
@@ -47,7 +46,6 @@ axios(urlSlam)
                 url,
                 image
             })
-            console.log(articles)
         })
     }).catch(err=>console.log(err))
 
