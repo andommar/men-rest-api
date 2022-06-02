@@ -14,21 +14,21 @@ describe('Team Test Collection', () => {
 
     //because we work with API, we're working asynchronosly we use done
     //we have to put done at the end otherwise test might end earlier than expected
-    it('test default API welcome route...', (done) => {
+    // it('test default API welcome route...', (done) => {
 
-        chai.request(server)
-        .get('/api/welcome')
-        .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('object');
-            // res.body.should.be.a('array');
-            console.log(res.body.message);
-            const actualVal = res.body.message;
-            expect(actualVal).to.be.equal("Welcome to the MEN RESTful API")
-            done();
-        });
+    //     chai.request(server)
+    //     .get('/api/welcome')
+    //     .end((err, res) => {
+    //         res.should.have.status(200);
+    //         res.body.should.be.a('object');
+    //         // res.body.should.be.a('array');
+    //         console.log(res.body.message);
+    //         const actualVal = res.body.message;
+    //         expect(actualVal).to.be.equal("Welcome to the MEN RESTful API")
+    //         done();
+    //     });
 
-    });
+    // });
 
     it('should register + login a user, create team and verify 1 in DB', (done) => {
 
@@ -214,7 +214,7 @@ describe('Team Test Collection', () => {
                 chai.request(server)
                     .post('/api/user/login')
                     .send({
-                        "email": "newuser@gmail.com",
+                        "email": "timmy@gmail.com",
                         "password": "1234567"
                     })
                     .end((err, res) => {

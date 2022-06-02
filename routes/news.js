@@ -8,8 +8,11 @@ const urlBR = 'https://bleacherreport.com/nba'
 const urlSlam = 'https://www.slamonline.com/news/'
 
 
-// Bleacher report
-axios(urlBR)
+//Duplicate code. Needs to be improved
+//Find a way to pass html selectors depending on the website
+
+fetchNews = async (url) =>{
+    await axios(url)
     .then(res => {
 
         const html = res.data
@@ -25,10 +28,7 @@ axios(urlBR)
             })
         })
     }).catch(err=>console.log(err))
-
-//Slam
-//Duplicate code. Needs to be improved
-//Find a way to pass html selectors depending on the website
+}
 
 axios(urlSlam)
     .then(res => {
@@ -49,11 +49,12 @@ axios(urlSlam)
         })
     }).catch(err=>console.log(err))
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
         try{
+            await fetchNews(urlBR)
             res.json(articles)
         }catch (err) {
-            (err => { res.status(500).send({message: "Error couldn't retrieve site news"})})
+            (err => { res.status(404).send({message: "Error couldn't retrieve site news"})})
         }
     
     });
